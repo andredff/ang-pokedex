@@ -5,9 +5,9 @@ import { CardComponent } from './pokedex/card/card.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/list', pathMatch: 'full'},
-  { path: 'list', component: ListComponent},
-  { path: 'card', component: CardComponent},
+  { path: '', redirectTo: '/', pathMatch: 'full'},
+  { path: '', component: ListComponent},
+  { path: 'detalhes/:id', component: CardComponent},
 
 ];
 

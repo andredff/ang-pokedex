@@ -1,1 +1,20 @@
-<p>list works!</p>
+<div class="container">
+  <div class="grid">
+
+    <div class="card" *ngFor="let pokemon of pokemons">
+      <a class="card-link" [routerLink]="['detalhes/' + pokemon.id]">
+        <div class="card-img">
+          <img [src]="pokemon?.imageUrl" [alt]="pokemon.name">
+        </div>
+        <div class="card-content">
+          <p class="title">{{pokemon?.name}}</p>
+          <p class="id">#{{pokemon?.id}}</p>
+        </div>
+        <div class="card-footer">
+          <p>Type: <span>{{pokemon?.types}}</span></p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+</div>
