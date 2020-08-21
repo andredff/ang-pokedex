@@ -15,7 +15,6 @@ export class ListComponent implements OnInit {
   pokemons: Pokemon[];
   pokemons$: Observable<Pokemon[]>;
   results$: Observable<any>;
-
   queryField = new FormControl;
 
   constructor(public pokemonService: PokemonService) { }
@@ -47,7 +46,6 @@ export class ListComponent implements OnInit {
   private orderByName(a, b) {
     const nameA = a.name.toUpperCase();
     const nameB = b.name.toUpperCase();
-
     let comparison = 0;
     if (nameA > nameB) {
       comparison = 1;

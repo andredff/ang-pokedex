@@ -1,0 +1,143 @@
+@import "./../../../scss/index.scss";
+
+.card-detail {
+  width: 90%;
+  background-color: $white;
+  margin: 20px auto;
+  padding: 16px;
+  border: 1px solid $gray-light;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+  &-img {
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.card-content {
+  margin: 12px 0;
+  .card-title {
+    font-size: $fontLG;
+    font-weight: $fontBold;
+  }
+}
+
+.card-group-title {
+  text-align: center;
+  font-size: $fontSM;
+  font-weight: $fontBold;
+}
+
+.group {
+  margin-bottom: 5px;
+}
+
+.group-title {
+  font-weight: $fontBold;
+  margin-right: 6px;
+}
+
+.group-end {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.group-type {
+  display: flex;
+  align-items: center;
+  margin: 6px 0;
+}
+
+.type {
+  display: inline-flex;
+  align-items: center;
+  &:first-child {
+    margin-right: 5px;
+  }
+}
+
+.cost {
+  display: flex;
+  align-items: center;
+}
+
+.cost-icon {
+  background: url(../../../assets/types_icon.png) no-repeat;
+  width: 28px;
+  height: 28px;
+  background-position: 0px 0px;
+  background-size: 150px;
+  overflow: hidden;
+  color: transparent;
+  display: inline-block;
+  &.colorless {
+    background-position: -90px -32px;
+  }
+  &.darkness {
+    background-position: -33px -32px;
+  }
+  &.dragon {
+    background-position: -116px -32px;
+  }
+  &.fairy {
+    background-position: -60px -58px;
+  }
+  &.fighting {
+    background-position: -6px -32px;
+  }
+  &.fire {
+    background-position: -33px -5px;
+  }
+  &.grass {
+    background-position: -6px -5px;
+  }
+  &.lightning {
+    background-position: -90px -5px;
+  }
+  &.metal {
+    background-position: -60px -32px;
+  }
+  &.psychic {
+    background-position: -116px -5px;
+  }
+  &.water {
+    background-position: -60px -5px;
+  }
+}
+
+.badge {
+  background: darken($purple-dark, 20%);
+  padding: 3px 5px;
+  border-radius: 60%;
+  color: $gray-light;
+  font-size: $fontDefault - 0.2rem;
+  font-weight: 700;
+}
+
+@media (min-width: 600px) {
+  html {
+      font-size: 1.125em;
+  }
+  .card-detail {
+    display: flex;
+    width: 80%;
+    background-color: $white;
+    margin: 20px auto;
+    padding: 16px;
+    border: 1px solid $gray-light;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+    &-img {
+      img {
+        padding: 20px;
+        width: 100%;
+        // max-width: 400px;
+      }
+    }
+  }
+  .card-content {
+    width: 100%;
+    padding: 16px;
+  }
+}
+

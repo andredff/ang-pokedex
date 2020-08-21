@@ -25,14 +25,9 @@ export class PokemonService {
       );
   }
 
-  // getCardById(id: string): Observable<Pokemon> {
-  //   const params = { id };
-  //   return this.http.get<Pokemon>(`${environment.api.pokemontcg.uri}/cards/`, { params })
-  //     .pipe(
-  //       map((response) => {
-  //         return response;
-  //       })
-  //     );
-  // }
+  getCardById(id: string) {
+    const params = { id };
+    return this.http.get<any>(`${environment.api.pokemontcg.uri}/cards`, { params });
+  }
 
 }

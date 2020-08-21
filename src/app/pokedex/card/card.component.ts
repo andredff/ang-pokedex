@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Pokemon } from '../models/pokemon.model';
+import { Router, ActivatedRoute } from '@angular/router';
+import { PokemonService } from '../services/pokemon.service';
+import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-card',
@@ -7,9 +12,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardComponent implements OnInit {
 
-  constructor() { }
+  id: string;
+  pokemon: any;
+  pokemon$: Observable<Pokemon>;
 
-  ngOnInit(): void {
+  constructor(private router: Router, private route: ActivatedRoute, private pokemonService: PokemonService) { }
+
+  ngOnInit() {
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.getById();
+  }
+
+  getById() {
+    this.pokemonService.getCardById(this.id)
+      .pipe(
+        map(data => data.cards),
+      ).subscribe(data => {
+        this.pokemon = data[0]
+        console.log(this.pokemon);
+      }) ;
   }
 
 }

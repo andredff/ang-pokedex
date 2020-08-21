@@ -43,7 +43,7 @@
 
 .card-content {
   p {
-    margin-bottom: 0;
+    margin: 12px 0;
   }
   display: flex;
   justify-content: space-between;
@@ -64,3 +64,8 @@
   }
 }
 
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
