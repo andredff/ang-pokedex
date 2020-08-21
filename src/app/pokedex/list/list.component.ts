@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PokemonService } from '../services/pokemon.service';
+import { Pokemon } from '../models/pokemon.model';
+import { Observable } from 'rxjs';
+import { distinctUntilChanged, debounceTime, last, tap, map, filter } from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-list',
@@ -8,26 +12,36 @@ import { PokemonService } from '../services/pokemon.service';
 })
 export class ListComponent implements OnInit {
 
-  public pokemons;
-  public cards;
+  pokemons: Pokemon[];
+  pokemons$: Observable<Pokemon[]>;
+  results$: Observable<any>;
+
+  queryField = new FormControl;
 
   constructor(public pokemonService: PokemonService) { }
 
   ngOnInit() {
     this.getPokemons();
+    this.onSearch();
   }
 
-  getPokemons(){
-    this.pokemonService.getCards().subscribe(res => {
-      this.pokemons = res;
-      this.pokemons = this.pokemons.cards;
-      this.pokemons.sort(this.orderByName);
-      console.log(this.pokemons);
-    });
+  onSearch() {
+    this.queryField.valueChanges.pipe(
+      debounceTime(400),
+      map(value => value.trim()),
+      filter(value => value.length > 1),
+      distinctUntilChanged(),
+      tap(value => this.getPokemons(value)),
+      last()
+    ).subscribe();
   }
 
-  pokemonDetails() {
-
+  getPokemons(query?: string){
+    const name = query;
+    this.pokemons$ = this.pokemonService.getCards(name)
+      .pipe(
+        map(dados => dados.cards.sort(this.orderByName) ),
+      );
   }
 
   private orderByName(a, b) {

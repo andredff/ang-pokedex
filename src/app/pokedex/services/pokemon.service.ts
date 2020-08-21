@@ -4,7 +4,7 @@ import { environment } from './../../../environments/environment';
 
 import { Pokemon } from '../models/pokemon.model';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators'
+import { map, tap, delay } from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
@@ -13,23 +13,26 @@ export class PokemonService {
 
   constructor(private http: HttpClient) { }
 
-  getCards(): Observable<Pokemon> {
-    return this.http.get<Pokemon>(`${environment.api.pokemontcg.uri}/cards`)
+  getCards(searchBy?: string) {
+    const name = searchBy ? searchBy : '';
+    const params = {
+      name,
+    }
+    return this.http.get<Pokemon[]>(`${environment.api.pokemontcg.uri}/cards`, { params })
       .pipe(
-        map((response) => {
-          return response;
-        })
+        delay(2000),
+        tap(console.log),
       );
   }
 
-  getCardById(id: string): Observable<Pokemon> {
-    const params = { id };
-    return this.http.get<Pokemon>(`${environment.api.pokemontcg.uri}/cards/`, { params })
-      .pipe(
-        map((response) => {
-          return response;
-        })
-      );
-  }
+  // getCardById(id: string): Observable<Pokemon> {
+  //   const params = { id };
+  //   return this.http.get<Pokemon>(`${environment.api.pokemontcg.uri}/cards/`, { params })
+  //     .pipe(
+  //       map((response) => {
+  //         return response;
+  //       })
+  //     );
+  // }
 
 }

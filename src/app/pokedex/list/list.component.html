@@ -1,4 +1,8 @@
-<section class="container">
+<div>
+  <input type="text" id="search" [formControl]="queryField">
+</div>
+
+<section class="container" *ngIf="pokemons$ | async as pokemons">
   <div class="grid">
 
     <div class="card" *ngFor="let pokemon of pokemons">
@@ -16,9 +20,6 @@
       </a>
     </div>
   </div>
-
-  <!-- <mat-paginator *ngIf="pokemons.length" [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pageSizeOptions"
-  (page)="onChangePaginator($event)" [hidePageSize]="true" [pageIndex]="currentPage-1"></mat-paginator> -->
 
 
 </section>
