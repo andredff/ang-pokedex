@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from './../../../environments/environment';
+
 import { Pokemon } from '../models/pokemon.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators'
@@ -9,12 +11,10 @@ import { map } from 'rxjs/operators'
 })
 export class PokemonService {
 
-  url: string = 'https://api.pokemontcg.io/v1/';
-
   constructor(private http: HttpClient) { }
 
   getCards(): Observable<Pokemon> {
-    return this.http.get<Pokemon>(`${this.url}cards`)
+    return this.http.get<Pokemon>(`${environment.api.pokemontcg.uri}/cards`)
       .pipe(
         map((response) => {
           return response;
@@ -22,8 +22,9 @@ export class PokemonService {
       );
   }
 
-  getCardById(id): Observable<Pokemon> {
-    return this.http.get<Pokemon>(`${this.url}cards/${id}`)
+  getCardById(id: string): Observable<Pokemon> {
+    const params = { id };
+    return this.http.get<Pokemon>(`${environment.api.pokemontcg.uri}/cards/`, { params })
       .pipe(
         map((response) => {
           return response;
