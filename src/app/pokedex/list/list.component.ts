@@ -24,25 +24,29 @@ export class ListComponent implements OnInit {
     this.onSearch();
   }
 
+  // Método para carregar lista de pokemons
+  getPokemons(query?: string){
+    const type = 'Pokemon';
+    const name = query;
+    this.pokemons$ = this.pokemonService.getCards(type, name)
+      .pipe(
+        map(dados => dados.cards.sort(this.orderByName) ),
+      );
+  }
+
+  // Método para fazer busca reativa pelo nome do pokemon
   onSearch() {
     this.queryField.valueChanges.pipe(
       debounceTime(400),
       map(value => value.trim()),
-      filter(value => value.length > 1),
+      // filter(value => value.length > 1),
       distinctUntilChanged(),
       tap(value => this.getPokemons(value)),
       last()
     ).subscribe();
   }
 
-  getPokemons(query?: string){
-    const name = query;
-    this.pokemons$ = this.pokemonService.getCards(name)
-      .pipe(
-        map(dados => dados.cards.sort(this.orderByName) ),
-      );
-  }
-
+  // Método para ordernar array por nome
   private orderByName(a, b) {
     const nameA = a.name.toUpperCase();
     const nameB = b.name.toUpperCase();

@@ -13,13 +13,15 @@ export class PokemonService {
 
   constructor(private http: HttpClient) { }
 
-  getCards(searchBy?: string) {
+  getCards(superType: string, searchBy?: string) {
     const name = searchBy ? searchBy : '';
     const params = {
+      supertype: superType,
       name,
     };
     return this.http.get<Pokemon[]>(`${environment.api.pokemontcg.uri}/cards`, { params })
       .pipe(
+        // delay só para simular uma demorar e aparecer o loading
         delay(2000),
         tap(console.log),
       );
@@ -27,7 +29,12 @@ export class PokemonService {
 
   getCardById(id: string) {
     const params = { id };
-    return this.http.get<any>(`${environment.api.pokemontcg.uri}/cards`, { params });
+    return this.http.get<any>(`${environment.api.pokemontcg.uri}/cards`, { params })
+    .pipe(
+      // delay só para simular uma demorar e aparecer o loading
+      delay(2000),
+      // tap(console.log),
+    );
   }
 
 }

@@ -1,5 +1,11 @@
 @import './../../../scss/index.scss';
 
+.searchBy {
+  margin: 12px 0;
+  display: flex;
+  justify-content: center;
+}
+
 .container {
   width: 100%;
   max-width: 1024px;
@@ -62,10 +68,4 @@
     padding: 2px 10px;
     border-radius: 10px;
   }
-}
-
-.loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

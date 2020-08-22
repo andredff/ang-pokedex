@@ -23,6 +23,7 @@ export class CardComponent implements OnInit {
     this.getById();
   }
 
+  // Método para carregar pokemon por ID
   getById() {
     this.pokemonService.getCardById(this.id)
       .pipe(
@@ -31,6 +32,10 @@ export class CardComponent implements OnInit {
         this.pokemon = data[0]
         console.log(this.pokemon);
       }) ;
+  }
+
+  back(){
+    this.router.navigate(['/']);
   }
 
 }

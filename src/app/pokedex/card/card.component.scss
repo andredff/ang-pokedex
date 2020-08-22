@@ -1,5 +1,16 @@
 @import "./../../../scss/index.scss";
 
+.back {
+  margin: 12px 0;
+  display: flex;
+  justify-content: center;
+  button {
+    align-items: center;
+    display: flex;
+    cursor: pointer;
+  }
+}
+
 .card-detail {
   width: 90%;
   background-color: $white;

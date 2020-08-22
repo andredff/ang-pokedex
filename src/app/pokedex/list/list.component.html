@@ -1,11 +1,12 @@
-<div>
-  <mat-form-field>
-    <mat-label>Search by name</mat-label>
-    <input matInput [formControl]="queryField">
-  </mat-form-field>
-</div>
-
 <section class="container" *ngIf="pokemons$ | async as pokemons; else loading">
+
+  <div class="searchBy">
+    <mat-form-field>
+      <mat-label>Procurar pokémon</mat-label>
+      <input matInput [formControl]="queryField">
+    </mat-form-field>
+  </div>
+
   <div class="grid">
 
     <div class="card" *ngFor="let pokemon of pokemons">
@@ -17,19 +18,17 @@
           <p class="title">{{pokemon?.name}}</p>
           <p class="id">#{{pokemon?.id}}</p>
         </div>
-        <div class="card-footer">
+        <div class="card-footer" *ngIf="pokemon?.types">
           <p>Tipo: <span>{{pokemon?.types}}</span></p>
         </div>
       </a>
     </div>
   </div>
 
-
-
 </section>
 
 <ng-template #loading>
-    <div class="container content loading">
-      <img src="../../../assets/poke.gif" alt="loading">
-      </div>
-  </ng-template>
+  <div class="container content loading">
+    <img src="../../../assets/poke.gif" alt="loading">
+  </div>
+</ng-template>

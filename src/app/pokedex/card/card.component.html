@@ -1,4 +1,11 @@
-<section class="container" *ngIf="pokemon?.id">
+<section class="container" *ngIf="pokemon?.id; else loading">
+
+  <div class="back">
+    <button (click)="back()" color="primary" mat-button>
+      <mat-icon aria-hidden="false" aria-label="back icon">arrow_back_ios</mat-icon>Voltar
+    </button>
+  </div>
+
   <div class="card-detail">
     <div class="card-detail-img">
       <img [src]="pokemon?.imageUrlHiRes" alt="">
@@ -58,3 +65,9 @@
   </div>
   <!-- </div> -->
 </section>
+
+<ng-template #loading>
+    <div class="container content loading">
+      <img src="../../../assets/poke.gif" alt="loading">
+    </div>
+  </ng-template>

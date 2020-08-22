@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 import { CardComponent } from './pokedex/card/card.component';
 
@@ -35,7 +36,8 @@ import { CardComponent } from './pokedex/card/card.component';
     MatInputModule,
     MatTooltipModule,
     MatToolbarModule,
-    MatCardModule
+    MatCardModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
