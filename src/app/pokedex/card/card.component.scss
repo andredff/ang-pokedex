@@ -115,9 +115,9 @@
   font-weight: 700;
 }
 
-@media (min-width: 600px) {
+@media (min-width: $tablet) {
   html {
-      font-size: 1.125em;
+      font-size: $fontSM;
   }
   .card-detail {
     display: flex;
@@ -131,7 +131,6 @@
       img {
         padding: 20px;
         width: 100%;
-        // max-width: 400px;
       }
     }
   }

@@ -4,7 +4,7 @@ import { environment } from './../../../environments/environment';
 
 import { Pokemon } from '../models/pokemon.model';
 import { Observable } from 'rxjs';
-import { map, tap, delay } from 'rxjs/operators'
+import { map, tap, delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,7 @@ export class PokemonService {
     const name = searchBy ? searchBy : '';
     const params = {
       name,
-    }
+    };
     return this.http.get<Pokemon[]>(`${environment.api.pokemontcg.uri}/cards`, { params })
       .pipe(
         delay(2000),
